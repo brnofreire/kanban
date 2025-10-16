@@ -211,4 +211,4 @@ Para problemas ou dúvidas, consulte a documentação do Laravel: https://larave
 
 ---
 
-Desenvolvido para Kanban Vox Tecnologia
+Desenvolvido por Bruno Bernardo G. Freire

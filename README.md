@@ -211,4 +211,21 @@ Para problemas ou dúvidas, consulte a documentação do Laravel: https://larave
 
 ---
 
-Desenvolvido para Kanban Vox Tecnologia
+## Imagens Demonstrativas do Projeto
+![Tela home](resources/assets/images/image.png)
+![Tela Login](resources/assets/images/image-1.png)
+![Criar Conta](resources/assets/images/image-2.png)
+![Ver quadros criados](resources/assets/images/image-3.png)
+![Editar quadros](resources/assets/images/image-4.png)
+![Novo quadro](resources/assets/images/image-5.png)
+![Deletar quadro](resources/assets/images/image-6.png)
+![Ver detalhes do quadro selecionado](resources/assets/images/image-7.png)
+![Nova categoria](resources/assets/images/image-8.png)
+![Função drag/arrastar](resources/assets/images/image-9.png)
+![Editar categoria](resources/assets/images/image-10.png)
+![Adicionar tarefa](resources/assets/images/image-11.png)
+![Editar tarefa](resources/assets/images/image-12.png)
+![Excluir categoria](resources/assets/images/image-13.png)
+![Excluir tarefa](resources/assets/images/image-14.png)
+
+Desenvolvido por Bruno Bernardo G. Freire
