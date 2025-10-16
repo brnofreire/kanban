@@ -1,61 +1,214 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Kanban Vox - Sistema de Gerenciamento de Tarefas
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Sistema Kanban estilo Trello desenvolvido com Laravel 11, PHP 8.2+, PostgreSQL, Bootstrap 5 e jQuery.
 
-## About Laravel
+## Características
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Autenticação completa** com login/registro
+- **Gerenciamento de Quadros (Boards)** - Crie e organize múltiplos quadros
+- **Categorias personalizáveis** - Organize suas tarefas em categorias (To Do, In Progress, Done, etc.)
+- **Tarefas com drag-and-drop** - Arraste e solte tarefas entre categorias
+- **Interface responsiva** - Design moderno com Bootstrap 5
+- **AJAX/jQuery** - Operações dinâmicas sem recarregar a página
+- **Controle de permissões** - Cada usuário gerencia apenas seus próprios quadros
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Requisitos
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- PHP 8.2 ou superior
+- PostgreSQL
+- Composer
+- Node.js e NPM
 
-## Learning Laravel
+## Instalação
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. **Clone o repositório ou navegue até o diretório do projeto**
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+2. **Instale as dependências do PHP**
+```bash
+composer install
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+3. **Configure o arquivo .env**
+O arquivo .env já está configurado. Certifique-se de que o PostgreSQL está rodando e ajuste as credenciais se necessário:
+```
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=kanban_vox_tecnologia
+DB_USERNAME=postgree
+DB_PASSWORD=
+```
 
-## Laravel Sponsors
+4. **Crie o banco de dados**
+```bash
+# No PostgreSQL, crie o banco de dados:
+psql -U root -c "CREATE DATABASE kanban_vox_tecnologia;"
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+5. **Execute as migrations**
+```bash
+php artisan migrate
+```
 
-### Premium Partners
+6. **Instale o Laravel UI para autenticação**
+```bash
+composer require laravel/ui
+php artisan ui bootstrap --auth
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+7. **Instale as dependências do Node.js**
+```bash
+npm install
+```
 
-## Contributing
+8. **Compile os assets**
+```bash
+npm run build
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+9. **Inicie o servidor de desenvolvimento**
+```bash
+php artisan serve
+```
 
-## Code of Conduct
+10. **Acesse a aplicação**
+Abra seu navegador e acesse: `http://localhost:8000`
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Estrutura do Projeto
 
-## Security Vulnerabilities
+### Backend
+- **Models**: `Board`, `Category`, `Task`, `User`
+- **Controllers**: `BoardController`, `CategoryController`, `TaskController`
+- **Policies**: `BoardPolicy` para controle de acesso
+- **Migrations**: Estrutura completa do banco de dados
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Frontend
+- **Layouts**: Layout responsivo com Bootstrap 5
+- **Views**: 
+  - `boards/index.blade.php` - Lista de quadros
+  - `boards/show.blade.php` - Visualização do quadro com drag-and-drop
+  - `auth/*` - Páginas de login e registro
+- **JavaScript**: jQuery com jQuery UI para drag-and-drop e AJAX
 
-## License
+## Uso
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 1. Registrar/Login
+- Acesse a aplicação e crie uma conta
+- Faça login com suas credenciais
+
+### 2. Criar um Quadro
+- Clique em "Novo Quadro"
+- Preencha o título e descrição
+- Clique em "Criar Quadro"
+
+### 3. Adicionar Categorias
+- Dentro do quadro, clique em "Nova Categoria"
+- Exemplos: "To Do", "In Progress", "Testing", "Done"
+
+### 4. Criar Tarefas
+- Em cada categoria, clique em "Adicionar Tarefa"
+- Preencha o título e descrição da tarefa
+
+### 5. Mover Tarefas
+- Clique e arraste as tarefas entre as categorias
+- As mudanças são salvas automaticamente
+
+## Funcionalidades Implementadas
+
+✅ Sistema de autenticação completo (login/registro/logout)
+✅ CRUD completo de Quadros (Boards)
+✅ CRUD completo de Categorias
+✅ CRUD completo de Tarefas
+✅ Drag and drop de tarefas entre categorias
+✅ Controle de permissões (usuários só veem seus próprios quadros)
+✅ Interface responsiva com Bootstrap 5
+✅ Operações via AJAX sem recarregar a página
+✅ Notificações toast para feedback do usuário
+✅ Relacionamentos Eloquent entre modelos
+✅ PostgreSQL como banco de dados
+
+## Tecnologias Utilizadas
+
+- **Backend**: Laravel 11, PHP 8.2+
+- **Frontend**: Bootstrap 5, jQuery, jQuery UI
+- **Banco de Dados**: PostgreSQL
+- **ORM**: Eloquent
+- **Autenticação**: Laravel UI
+
+## Estrutura do Banco de Dados
+
+### users
+- id
+- name
+- email
+- password
+- timestamps
+
+### boards
+- id
+- user_id (FK)
+- title
+- description
+- timestamps
+
+### categories
+- id
+- board_id (FK)
+- title
+- position
+- timestamps
+
+### tasks
+- id
+- category_id (FK)
+- title
+- description
+- position
+- timestamps
+
+## API Endpoints
+
+### Boards
+- `GET /boards` - Listar quadros
+- `POST /boards` - Criar quadro
+- `GET /boards/{id}` - Visualizar quadro
+- `PUT /boards/{id}` - Atualizar quadro
+- `DELETE /boards/{id}` - Excluir quadro
+
+### Categories
+- `POST /boards/{id}/categories` - Criar categoria
+- `PUT /categories/{id}` - Atualizar categoria
+- `DELETE /categories/{id}` - Excluir categoria
+
+### Tasks
+- `POST /categories/{id}/tasks` - Criar tarefa
+- `PUT /tasks/{id}` - Atualizar tarefa
+- `DELETE /tasks/{id}` - Excluir tarefa
+- `POST /tasks/{id}/move` - Mover tarefa entre categorias
+
+## Desenvolvimento
+
+### Executar em modo de desenvolvimento
+```bash
+# Terminal 1 - Servidor Laravel
+php artisan serve
+
+# Terminal 2 - Compilar assets em watch mode (opcional)
+npm run dev
+```
+
+## Segurança
+
+- Proteção CSRF em todas as requisições
+- Senhas criptografadas com bcrypt
+- Validação de dados no backend
+- Controle de acesso baseado em políticas (Policies)
+- Middleware de autenticação em todas as rotas protegidas
+
+## Suporte
+
+Para problemas ou dúvidas, consulte a documentação do Laravel: https://laravel.com/docs
+
+---
+
+Desenvolvido para Kanban Vox Tecnologia
