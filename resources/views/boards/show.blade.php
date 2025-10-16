@@ -229,21 +229,25 @@ $(document).ready(function() {
     $(document).on('click', '.delete-category-btn', function() {
         const categoryId = $(this).data('category-id');
 
-        if (confirm('Tem certeza que deseja excluir esta categoria? Todas as tarefas serão removidas.')) {
-            $.ajax({
-                url: `/categories/${categoryId}`,
-                method: 'DELETE',
-                success: function(response) {
-                    showToast('Categoria excluída com sucesso!');
-                    $(`.category-wrapper[data-category-id="${categoryId}"]`).fadeOut(300, function() {
-                        $(this).remove();
-                    });
-                },
-                error: function(xhr) {
-                    showToast('Erro ao excluir categoria', 'error');
-                }
-            });
-        }
+        confirmDelete(
+            'Excluir Categoria?',
+            'Tem certeza que deseja excluir esta categoria? Todas as tarefas serão removidas.',
+            function() {
+                $.ajax({
+                    url: `/categories/${categoryId}`,
+                    method: 'DELETE',
+                    success: function(response) {
+                        showToast('Categoria excluída com sucesso!');
+                        $(`.category-wrapper[data-category-id="${categoryId}"]`).fadeOut(300, function() {
+                            $(this).remove();
+                        });
+                    },
+                    error: function(xhr) {
+                        showToast('Erro ao excluir categoria', 'error');
+                    }
+                });
+            }
+        );
     });
 
     // Add Task - Open Modal
@@ -313,21 +317,25 @@ $(document).ready(function() {
     $(document).on('click', '.delete-task-btn', function() {
         const taskId = $(this).data('task-id');
 
-        if (confirm('Tem certeza que deseja excluir esta tarefa?')) {
-            $.ajax({
-                url: `/tasks/${taskId}`,
-                method: 'DELETE',
-                success: function(response) {
-                    showToast('Tarefa excluída com sucesso!');
-                    $(`.task-card[data-task-id="${taskId}"]`).fadeOut(300, function() {
-                        $(this).remove();
-                    });
-                },
-                error: function(xhr) {
-                    showToast('Erro ao excluir tarefa', 'error');
-                }
-            });
-        }
+        confirmDelete(
+            'Excluir Tarefa?',
+            'Tem certeza que deseja excluir esta tarefa?',
+            function() {
+                $.ajax({
+                    url: `/tasks/${taskId}`,
+                    method: 'DELETE',
+                    success: function(response) {
+                        showToast('Tarefa excluída com sucesso!');
+                        $(`.task-card[data-task-id="${taskId}"]`).fadeOut(300, function() {
+                            $(this).remove();
+                        });
+                    },
+                    error: function(xhr) {
+                        showToast('Erro ao excluir tarefa', 'error');
+                    }
+                });
+            }
+        );
     });
 });
 

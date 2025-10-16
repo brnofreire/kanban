@@ -181,25 +181,29 @@ $(document).ready(function() {
     $('.delete-board-btn').on('click', function() {
         const boardId = $(this).data('board-id');
 
-        if (confirm('Tem certeza que deseja excluir este quadro? Todas as categorias e tarefas serão removidas.')) {
-            $.ajax({
-                url: `/boards/${boardId}`,
-                method: 'DELETE',
-                success: function(response) {
-                    showToast('Quadro excluído com sucesso!');
-                    $(`[data-board-id="${boardId}"]`).fadeOut(300, function() {
-                        $(this).remove();
+        confirmDelete(
+            'Excluir Quadro?',
+            'Tem certeza que deseja excluir este quadro? Todas as categorias e tarefas serão removidas.',
+            function() {
+                $.ajax({
+                    url: `/boards/${boardId}`,
+                    method: 'DELETE',
+                    success: function(response) {
+                        showToast('Quadro excluído com sucesso!');
+                        $(`[data-board-id="${boardId}"]`).fadeOut(300, function() {
+                            $(this).remove();
 
-                        if ($('#boardsContainer .col-md-4').length === 0) {
-                            location.reload();
-                        }
-                    });
-                },
-                error: function(xhr) {
-                    showToast('Erro ao excluir quadro', 'error');
-                }
-            });
-        }
+                            if ($('#boardsContainer .col-md-4').length === 0) {
+                                location.reload();
+                            }
+                        });
+                    },
+                    error: function(xhr) {
+                        showToast('Erro ao excluir quadro', 'error');
+                    }
+                });
+            }
+        );
     });
 });
 </script>
